@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link rel="stylesheet" th:href="@{/css/main.css}" />
+    <meta charset="UTF-8">
+    <title>Green Onion</title>
+    <style>
+        body {
+            font-family: "Helvetica Neue", "PingFang TC", "微軟正黑體", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9fdfb;
+        }
+
+        .main-content {
+            text-align: center;
+            padding: 80px 20px;
+            color: #4a5e57;
+        }
+
+        h1 {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #6c8e7f;
+        }
+
+        p {
+            font-size: 20px;
+            color: #888;
+            margin-bottom: 40px;
+        }
+
+        .start-btn {
+            background-color: #6c8e7f;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .start-btn:hover {
+            background-color: #5b7e70;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 主內容 -->
+    <div class="main-content">
+        <h1>歡迎使用 老郭鋪 POS 系統</h1>
+        <p>快速、簡單、現代化的蔥油餅店管理工具</p>
+        <a th:href="@{/login(role='admin')}" class="start-btn">管理者登入</a>
+		<a th:href="@{/login(role='user')}" class="start-btn">點餐者登入</a>
+    </div>
+</body>
+</html>

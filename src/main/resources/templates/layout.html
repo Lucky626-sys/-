@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout (titleFrag, contentFrag)">
+<head>
+    <meta charset="UTF-8">
+    <title th:replace="${titleFrag}">預設標題</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
+</head>
+<body>
+<header class="header container">
+    <div class="logo">
+        老郭鋪山東蔥油餅
+        <span>POS機</span>
+    </div>
+</header>
+
+
+<main class="main-content container" th:replace="${contentFrag}">
+    預設內容
+</main>
+
+<footer class="container" style="text-align:center; padding:10px; color:#888;">
+    <p>版權所有 © 2025</p>
+</footer>
+</body>
+</html>

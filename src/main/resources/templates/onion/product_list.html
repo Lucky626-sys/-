@@ -1,0 +1,52 @@
+<!-- src/main/resources/templates/product_list.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="layout :: layout (~{::title}, ~{::content})">
+<head>
+<title th:fragment="title">商品清單</title>
+</head>
+<body>
+	<main th:fragment="content">
+		<section class="main-content">
+			<h1>老郭鋪商品列表</h1>
+
+			<!-- 按鈕區 -->
+			<div class="button-bar" style="margin-bottom: 1rem;">
+				<a th:href="@{/admin/home}" class="btn">返回首頁</a> 
+				<a th:href="@{/product/add}"class="btn btn-primary">新增商品</a> 
+				<a th:href="@{/product}" class="btn btn-refresh" onclick="location.reload(); return false;">刷新</a>
+			</div>
+
+			<table class="pure-table pure-table-bordered product-table"
+				style="text-align: center;">
+				<thead>
+					<tr>
+						<th>商品名稱</th>
+						<th>商品價格</th>
+						<th>商品圖片</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="product : ${productList}">
+						<td th:text="${product.name}">商品名稱</td>
+						<td th:text="${product.price}">商品價格</td>
+						<td><img
+							th:src="@{/images/{filename}(filename=${product.imagePath})}"
+							onerror="this.onerror=null; this.src='/images/default.jpg';"
+							class="product-img" /></td>
+						<td><a th:href="@{'/product/update/' + ${product.id}}"
+							class="action-link">編輯</a>
+							<form th:action="@{'/product/delete/' + ${product.id}}"
+								method="post" style="display: inline;">
+								<input type="hidden" name="_method" value="delete" />
+								<button type="submit" class="action-link"
+									onclick="return confirm('確定要刪除嗎？')">刪除</button>
+							</form></td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+	</main>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      th:replace="layout :: layout ('每日營業額', 'this :: content')">
+
+<head>
+    <title>每日營業額</title>
+</head>
+
+<body>
+<section th:fragment="content">
+    <h1>每日營業額</h1>
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>日期</th>
+                <th>營業額 (NT$)</th>
+                <th>備註</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="sale : ${dailySales}">
+                <td th:text="${sale.date}">2025-05-01</td>
+                <td th:text="${sale.amount}">15000</td>
+                <td th:text="${sale.note}">週末銷售旺盛</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+</body>
+</html>

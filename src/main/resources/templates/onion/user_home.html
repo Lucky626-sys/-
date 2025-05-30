@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link rel="stylesheet" th:href="@{/css/main.css}" />
+    <meta charset="UTF-8">
+    <title>點餐者首頁</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
+    <style>
+        body {
+            font-family: "Helvetica Neue", "PingFang TC", "微軟正黑體", sans-serif;
+            background-color: #fafaf5;
+            text-align: center;
+        }
+        h1 {
+            color: #5d735d;
+            margin-top: 40px;
+        }
+        .menu-box {
+            margin: 40px auto;
+            max-width: 500px;
+        }
+        .menu-box a {
+            display: block;
+            margin: 15px auto;
+            padding: 15px;
+            background-color: #e0efe3;
+            color: #2f4f4f;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+        .menu-box a:hover {
+            background-color: #cfe3d4;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>點餐員 <span th:if="${nickname != null}" th:text="${nickname}"></span>
+			 <span th:if="${nickname == null}">訪客</span>，您好！</h1>
+
+    <div class="menu-box">
+        🛒 <a th:href="@{/product/order}">點餐</a>
+        🍠 <a th:href="@{/product/order/history}">訂單查詢</a>
+        🚪 <a th:href="@{/logout}">登出</a>
+    </div>
+
+</body>
+</html>

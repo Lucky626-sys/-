@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      th:replace="layout :: layout ('成本明細表', 'this :: content')">
+
+<head>
+    <title>成本明細表</title>
+</head>
+
+<body>
+<section th:fragment="content">
+    <h1>成本明細表</h1>
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>日期</th>
+                <th>成本項目</th>
+                <th>金額 (NT$)</th>
+                <th>備註</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="detail : ${costDetails}">
+                <td th:text="${detail.date}">2025-05-01</td>
+                <td th:text="${detail.item}">原料費</td>
+                <td th:text="${detail.amount}">500</td>
+                <td th:text="${detail.note}">購買蔥</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+</body>
+</html>

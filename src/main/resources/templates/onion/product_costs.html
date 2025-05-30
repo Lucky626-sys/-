@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      th:replace="layout :: layout ('成本總表', 'this :: content')">
+
+<head>
+    <title>成本總表</title>
+</head>
+
+<body>
+<section th:fragment="content">
+    <h1>成本總表</h1>
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>成本項目</th>
+                <th>總金額 (NT$)</th>
+                <th>說明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="cost : ${costList}">
+                <td th:text="${cost.item}">原料費</td>
+                <td th:text="${cost.totalAmount}">10000</td>
+                <td th:text="${cost.description}">本月原料費用</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+</body>
+</html>

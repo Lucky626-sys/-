@@ -1,0 +1,27 @@
+<!-- src/main/resources/templates/login.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="layout :: layout (~{::title}, ~{::content})">
+<head>
+<title th:fragment="title">登入頁面</title>
+</head>
+<body>
+	<main th:fragment="content">
+		<section class="main-content">
+			<h2>登入</h2>
+			<form method="post" th:action="@{/login}">
+				<input type="text" name="account" placeholder="帳號" /> <input
+					type="password" name="passwordHash" placeholder="密碼" /> <input
+					type="hidden" name="role" th:value="${role}" />
+				<button type="submit">登入</button>
+			</form>
+
+			<div th:if="${error}" th:text="${error}" style="color: red"></div>
+
+			<!-- 根據角色顯示提示 -->
+			<div th:if="${role} == 'admin'">請使用管理者帳號登入</div>
+			<div th:if="${role} == 'user'">請使用點餐者帳號登入</div>
+		</section>
+	</main>
+</body>
+</html>
