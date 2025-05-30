@@ -34,6 +34,6 @@ public class Product {
 	    private String imagePath;
 	    
 	    @OneToMany(mappedBy = "product")
-	    private OrderItem orderItems;
+	    private List<OrderItem> orderItems;
 	}
 

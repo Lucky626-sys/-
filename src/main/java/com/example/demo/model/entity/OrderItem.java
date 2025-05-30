@@ -3,6 +3,8 @@ package com.example.demo.model.entity;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,6 +21,7 @@ public class OrderItem {
     // 關聯到哪張訂單
     @ManyToOne
     @JoinColumn(name = "orders_id")
+    @JsonBackReference   // 反向引用，序列化時會被忽略，避免無限遞迴
     private Order order;
 
     @Column(name = "product_id", insertable = false, updatable = false)

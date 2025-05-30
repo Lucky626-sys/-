@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -36,6 +38,7 @@ public class Order {
 	//cascade = CascadeType.ALL	-> 儲存、更新、刪除一筆訂單時，所有 OrderItem 也會一起被處理（連帶操作）
 	//orphanRemoval = true -> 如果從List<OrderItem> 中刪除一筆item，那筆item會自動從資料庫刪除
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<OrderItem> items;
+	@JsonManagedReference  // 正向引用，會被序列化S
+	private List<OrderItem> items;
 	
 }
