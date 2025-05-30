@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,5 +32,8 @@ public class Product {
 	    private BigDecimal cost;
 	    @Column(name = "image_path") //記得要寫才會對應到資料庫
 	    private String imagePath;
+	    
+	    @OneToMany(mappedBy = "product")
+	    private OrderItem orderItems;
 	}
 

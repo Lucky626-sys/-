@@ -6,8 +6,8 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.demo.model.entity.Orders;
+import com.example.demo.model.entity.Order;
 
-public interface OrderRepository extends JpaRepository<Orders,Long>{
-	List<Orders> findByDate(LocalDate date);
+public interface OrderRepository extends JpaRepository<Order,Integer>{
+	List<Order> findByDate(LocalDate date);
 }
