@@ -41,9 +41,9 @@
 			 <span th:if="${nickname == null}">訪客</span>，您好！</h1>
 
     <div class="menu-box">
-        🛒 <a th:href="@{/product/order}">點餐</a>
-        🍠 <a th:href="@{/product/order/history}">訂單查詢</a>
-        🚪 <a th:href="@{/logout}">登出</a>
+        <a th:href="@{/orders/new}">🙋🏼‍♀️ 點餐</a>
+        <a th:href="@{/orders/search}">🧾 訂單查詢</a>
+        <a th:href="@{/logout}">🚪 登出</a>
     </div>
 
 </body>

@@ -16,7 +16,7 @@ public class PrintServiceImpl implements PrintService{
         System.out.println("訂單明細:");
         
         order.getItems().forEach(item -> {
-        	System.out.println("- " + item.getProductName() + " x" + item.getQuantity() + " 單價:" + item.getUnitPrice());
+        	System.out.println("- " + item.getProduct().getName()+ " x" + item.getQuantity() + " 單價:" + item.getUnitPrice());
         });
         
         System.out.println("總金額: " + order.getTotalAmount());

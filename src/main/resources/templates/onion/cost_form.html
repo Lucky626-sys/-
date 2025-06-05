@@ -1,0 +1,30 @@
+<!--新增、編輯成本表單  -->
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout :: layout (~{::title}, ~{::content})}">
+<head>
+<title>成本明細編輯</title>
+<link rel="stylesheet" th:href="@{/css/main.css}" />
+</head>
+<body>
+	<main th:fragment="content">
+		<section class="main-content">
+			<h1 th:text="${costDetail.id == null ? '新增成本' : '編輯成本'}"></h1>
+			<form
+				th:action="@{${costDetail.id == null} ? '/costs' : '/costs/update/' + ${costDetail.id}}"
+				th:object="${costDetail}" method="post">
+				<label>日期:</label> <input type="date" th:field="*{date}" required /><br />
+				<label>類型:</label> <select th:field="*{category}">
+					<option
+						th:each="cat : ${T(com.example.demo.model.entity.CostCategory).values()}"
+						th:value="${cat}" th:text="${cat.displayName}"></option>
+				</select><br /> <label>項目:</label> <input type="text" th:field="*{itemName}"
+					required /><br /> <label>金額:</label> <input type="number"
+					th:field="*{amount}" step="0.01" required /><br /> <label>備註:</label>
+				<input type="text" th:field="*{remark}" /><br />
+				<button type="submit">儲存</button>
+				<a th:href="@{/costs}">返回</a>
+			</form>
+		</section>
+	</main>
+</body>
+</html>

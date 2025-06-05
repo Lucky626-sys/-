@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout :: layout (~{::title}, ~{::content})}">
+<head>
+    <title th:fragment="title">訂單查詢</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
+</head>
+<body>
+	<section class="main-content" th:fragment="content">
+	    <h1>訂單查詢</h1>
+	    <form th:action="@{/orders/search}" method="get" class="search-form">
+	        <input type="text" name="orderId" placeholder="訂單編號">
+	        <input type="text" name="customerName" placeholder="顧客姓名">
+	        <input type="text" name="customerPhone" placeholder="顧客電話">
+	        <button type="submit" class="btn btn-primary">查詢</button>
+	        <a th:href="@{/user/home}" class="btn btn-refresh">回員工使用者首頁</a>
+	    </form>
+
+	    <table class="pure-table pure-table-bordered" style="text-align: center; margin-top: 2rem;">
+	        <thead>
+	            <tr>
+	                <th>訂單編號</th>
+	                <th>顧客姓名</th>
+	                <th>電話</th>
+	                <th>時間</th>
+	                <th>總金額</th>
+	                <th>明細</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+					<tr th:if="${#lists.isEmpty(orders)}">
+						<td colspan="6">查無資料</td>
+					</tr>
+					<tr th:if="${errorMessage}" th:text="${errorMessage}" style="color:red"></tr>
+					
+					<tr th:each="order : ${orders}">
+					
+	                <td th:text="${order.id}"></td>
+	                <td th:text="${order.customerName}"></td>
+	                <td th:text="${order.customerPhone}"></td>
+	                <td th:text="${#temporals.format(order.orderTime, 'yyyy-MM-dd HH:mm')}"></td>
+	                <td th:text="${order.totalAmount}"></td>
+	                <td>
+	                    <ul>
+	                        <li th:each="item : ${order.items}">
+	                            <span th:text="${item.productName}"></span> x <span th:text="${item.quantity}"></span>
+	                        </li>
+	                    </ul>
+	                </td>
+	            </tr>
+	        </tbody>
+	    </table>
+	</section>
+</body>
+</html>

@@ -8,17 +8,26 @@ import com.example.demo.model.dto.DailySalesDTO;
 import com.example.demo.model.entity.DailySales;
 
 @Component
+
 public class DailySalesMapper {
 	@Autowired
 	private ModelMapper modelMapper;
-	;
+	
 	public DailySalesDTO toDTO(DailySales dailySales) {
-		return modelMapper.map(dailySales, DailySalesDTO.class);
+		DailySalesDTO dto = modelMapper.map(dailySales, DailySalesDTO.class);
+		//Profit是計算欄位，手動set 確保值正確
+		dto.setProfit(dailySales.getProfit()); //Entity裡面的getProfit已經處理null的問題了
+		return dto;
 	}
 	
 	public DailySales toEntity(DailySalesDTO dailySalesDTO) {
 		return modelMapper.map(dailySalesDTO, DailySales.class);
 	}
 
+	
+	/*
+	 * modelMapper.getConfiguration().setPropertyCondition(context ->!context.getMapping().getLastDestinationProperty().isAnnotationPresent(Transient.class));
+	 *
+	 */
 
 }

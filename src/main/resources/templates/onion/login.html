@@ -8,7 +8,11 @@
 <body>
 	<main th:fragment="content">
 		<section class="main-content">
-			<h2>登入</h2>
+			
+			<div class="button-bar" style="margin-bottom: 1rem; display: flex; align-items: center;">
+				<h2 style="margin: 0; flex: 1" >登入</h2>
+				<a th:href="@{/}" class="btn">返回首頁</a> 
+			</div>
 			<form method="post" th:action="@{/login}">
 				<input type="text" name="account" placeholder="帳號" /> <input
 					type="password" name="passwordHash" placeholder="密碼" /> <input
@@ -16,6 +20,8 @@
 				<button type="submit">登入</button>
 			</form>
 
+			 
+			
 			<div th:if="${error}" th:text="${error}" style="color: red"></div>
 
 			<!-- 根據角色顯示提示 -->

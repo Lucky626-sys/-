@@ -1,0 +1,54 @@
+<!-- src/main/resources/templates/onion/manual_new_order.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout :: layout (~{::title}, ~{::content})}">
+<head>
+    <title th:fragment="title">手動補登訂單</title>
+</head>
+<body>
+<main th:fragment="content">
+    <section class="main-content">
+        <h1>手動補登訂單</h1>
+        <form th:action="@{/orders/manual-new}" method="post" th:object="${orderDTO}">
+            <div>
+                <label>顧客姓名：</label>
+                <input type="text" th:field="*{customerName}" required />
+            </div>
+            <div>
+                <label>電話：</label>
+                <input type="text" th:field="*{customerPhone}" required />
+            </div>
+            <div>
+                <label>補登原因：</label>
+                <input type="text" th:field="*{remark}" placeholder="請輸入補登原因"/>
+            </div>
+            <table class="pure-table pure-table-bordered" style="margin-top: 1rem;">
+                <thead>
+                    <tr>
+                        <th>商品名稱</th>
+                        <th>單價</th>
+                        <th>數量</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="product, iterStat : ${products}">
+                        <td th:text="${product.name}"></td>
+                        <td th:text="${product.price}"></td>
+                        <td>
+                            <input type="number" min="0" th:name="'items[' + ${iterStat.index} + '].quantity'" value="0"/>
+                            <input type="hidden" th:name="'items[' + ${iterStat.index} + '].productId'" th:value="${product.id}" />
+                            <input type="hidden" th:name="'items[' + ${iterStat.index} + '].productName'" th:value="${product.name}" />
+                            <input type="hidden" th:name="'items[' + ${iterStat.index} + '].unitPrice'" th:value="${product.price}" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="margin-top: 1rem;">
+                <button type="submit" class="btn btn-warning">送出補登訂單</button>
+                <a th:href="@{/orders}" class="btn">返回訂單列表</a>
+            </div>
+        </form>
+    </section>
+</main>
+</body>
+</html>

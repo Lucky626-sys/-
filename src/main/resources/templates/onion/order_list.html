@@ -1,0 +1,56 @@
+<!-- src/main/resources/templates/onion/order_list.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout :: layout (~{::title}, ~{::content})}">
+<head>
+<title th:fragment="title">訂單列表</title>
+<link rel="stylesheet" th:href="@{/css/main.css}" />
+</head>
+<body>
+	<main th:fragment="content">
+		<section class="main-content">
+			<h1>歷史訂單</h1>
+			<div class="button-bar" style="margin-bottom: 1rem;">
+				<a th:href="@{/orders/new}" class="btn btn-primary">新增訂單</a> <a
+					th:href="@{/orders/manual-new}" class="btn btn-warning">手動補登訂單</a>
+				<a th:href="@{/user/home}" class="btn btn-refresh">回員工使用者首頁</a>
+			</div>
+			<div style="margin-bottom: 1rem;">
+				<span style="font-weight: bold; color: #1a7;">目前訂單總金額：<span
+					th:text="${totalAmount}"></span> 元
+				</span>
+			</div>
+			<table class="pure-table pure-table-bordered"
+				style="text-align: center;">
+				<thead>
+					<tr>
+						<th>訂單編號</th>
+						<th>顧客姓名</th>
+						<th>電話</th>
+						<th>時間</th>
+						<th>總金額</th>
+						<th>明細</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="order : ${orders}">
+						<td th:text="${order.id}"></td>
+						<td th:text="${order.customerName}"></td>
+						<td th:text="${order.customerPhone}"></td>
+						<td
+							th:text="${#temporals.format(order.orderTime, 'yyyy-MM-dd HH:mm')}"></td>
+						<td th:text="${order.totalAmount}"></td>
+						<td>
+							<ul>
+								<li th:each="item : ${order.items}"><span
+									th:text="${item.productName}"></span> x <span
+									th:text="${item.quantity}"></span></li>
+							</ul>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+	</main>
+</body>
+</html>

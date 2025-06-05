@@ -14,6 +14,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "orders")
 public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +33,12 @@ public class Order {
 	@Column(name = "total_amount")
 	private BigDecimal totalAmount;
 	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "source_type", nullable = false)
+    private SourceType sourceType = SourceType.AUTO;
+	
+	
+	 private String remark;
 	//這是Order和OrderItem的一對多關係
 	//@OneToMany代表一張訂單有多筆訂單明細
 	//mappedBy = "order" ->表示關聯是由 OrderItem 裡的 order 欄位來維護的

@@ -1,0 +1,58 @@
+<!-- 
+	<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	<link rel="stylesheet" th:href="@{/css/main.css}" />
+	<meta charset="UTF-8">
+	
+	</head>
+
+	<body>
+		<div th:fragment="menu">
+			<header>
+				<div class="logo">
+					老郭鋪山東蔥油餅 🧅 <span>方便點餐 輕鬆管理</span> <span
+						th:if="${session.userDTO != null}"> 👤 <span
+						th:text="${session.userDTO.username}"></span>
+					</span>
+				</div>
+			</header>
+	
+			<!-- 🌿 導覽列 -->
+			<!-- m<nav>
+				<div
+					th:if="${session.userDTO != null and session.userDTO.role == 'user'}">
+					🛒 <a th:href="@{/orders/new}">點餐</a> 🍠 <a
+						th:href="@{/orders/search}">訂單查詢</a> 🚪 <a th:href="@{/logout}">登出</a>
+				</div>
+	
+				<div
+					th:if="${session.userDTO != null and session.userDTO.role == 'admin'}">
+					📦 <a th:href="@{/product/list}">商品管理</a>
+					<div class="dropdown">
+						🧮 <a href="#" onclick="return false;">成本管理 ▼</a>
+						<div class="dropdown-content">
+							<a th:href="@{/product/costs}">成本總表</a> <a
+								th:href="@{/product/costs/details}">成本明細表</a>
+						</div>
+					</div>
+	
+					<div class="dropdown">
+						👥 <a href="#" onclick="return false;">營業額管理 ▼</a>
+						<div class="dropdown-content">
+							<a th:href="@{/product/sales/daily}">每日營業額</a> <a
+								th:href="@{/product/sales/monthly}">每月營業額</a>
+						</div>
+					</div>
+				</div>
+	
+				<div th:if="${session.userDTO == null}">
+					🌱 <a th:href="@{/login(role='customer')}">點餐者登入</a> 🧄 <a
+						th:href="@{/login(role='admin')}">管理者登入</a>
+				</div>
+			</nav>
+		</div>
+	</body>
+</html>
+	
+ -->

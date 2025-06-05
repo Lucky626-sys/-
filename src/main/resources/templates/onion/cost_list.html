@@ -1,0 +1,45 @@
+<!-- 顯示所有成本明細、有新增成本的按鈕 -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout :: layout (~{::title}, ~{::content})}">
+<head>
+<title>成本明細列表</title>
+<link rel="stylesheet" th:href="@{/css/main.css}" />
+</head>
+<body>
+	<main th:fragment="content">
+		<section class="main-content">
+		
+			<div class="button-bar" style="margin-bottom: 1rem; display: flex; align-items: center;">
+				<h2 style="margin: 0; flex: 1" >成本明細列表</h2>
+				<a th:href="@{/admin/home}" class="btn">返回管理者目錄頁</a> 
+			</div>
+			<a th:href="@{/costs/new}" class="btn btn-primary">新增成本</a>
+			<table border="1">
+				<thead>
+					<tr>
+						<th>日期</th>
+						<th>類型</th>
+						<th>項目</th>
+						<th>金額</th>
+						<th>備註</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="cost : ${costs}">
+						<td th:text="${cost.date}"></td>
+						<td th:text="${cost.categoryDisplayName}"></td>
+						<td th:text="${cost.itemName}"></td>
+						<td th:text="${cost.amount}"></td>
+						<td th:text="${cost.remark}"></td>
+						<td><a th:href="@{'/costs/edit/' + ${cost.id}}">編輯</a> <a
+							th:href="@{'/costs/delete/' + ${cost.id}}"
+							onclick="return confirm('確定刪除?')">刪除</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+	</main>
+</body>
+</html>

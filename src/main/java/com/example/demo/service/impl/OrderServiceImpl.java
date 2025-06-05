@@ -2,6 +2,7 @@ package com.example.demo.service.impl;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -60,7 +61,8 @@ public class OrderServiceImpl implements OrderService{
 			order.getItems().forEach(item -> item.setOrder(order));
 		}
 		Order saved = orderRepository.save(order);
-		
+		//手動將PersisenBag轉成List(搭配ModelMapper的全域處理)
+		saved.setItems(new ArrayList<>(saved.getItems()));
 		//列印訂單
 		printService.printOrder(saved);
 		return mapper.toDTO(saved);

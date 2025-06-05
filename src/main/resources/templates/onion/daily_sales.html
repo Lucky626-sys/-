@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout :: layout (~{::title}, ~{::content})}">
+<head>
+<title>每日營業額</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/css/main.css}" />
+</head>
+<body>
+	<main th:fragment="content">
+		<form th:action="@{/sales/daily/summarize}" method="post">
+    <button type="submit">執行今日彙總</button>
+</form>
+<form th:action="@{/sales/daily/search}" method="post">
+    <input type="date" name="date" />
+    <button type="submit">查詢指定日期</button>
+</form>
+<h2>今日總營業額: <span th:text="${totalRevenue}"></span></h2>
+<table>
+    <tr>
+        <th>商品ID</th>
+        <th>商品名稱</th>
+        <th>數量</th>
+        <th>營業額</th>
+        <th>成本</th>
+        <th>來源</th>
+    </tr>
+    <tr th:each="sale : ${dailysales}">
+        <td th:text="${sale.productId}"></td>
+        <td th:text="${sale.productName}"></td>
+        <td th:text="${sale.quantity}"></td>
+        <td th:text="${sale.revenue}"></td>
+        <td th:text="${sale.cost}"></td>
+        <td th:text="${sale.sourceType}"></td>
+    </tr>
+</table>
+
+	</main>
+</body>
+</html>

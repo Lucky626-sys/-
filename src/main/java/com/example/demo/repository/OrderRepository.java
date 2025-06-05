@@ -10,4 +10,6 @@ import com.example.demo.model.entity.Order;
 
 public interface OrderRepository extends JpaRepository<Order,Integer>{
 	List<Order> findByOrderTimeBetween(LocalDateTime start, LocalDateTime end);
+	List<Order> findByCustomerName(String customerName);
+	List<Order> findByCustomerPhone(String customerNumber);
 }

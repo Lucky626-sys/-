@@ -3,6 +3,9 @@ package com.example.demo.model.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import com.example.demo.model.entity.SourceType;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
@@ -19,15 +22,26 @@ public class DailySalesDTO {
 	private Long id;
 	@NotNull(message = "{dailySalesDTO.date.notNull}")
 	private LocalDate date;
-	@NotEmpty(message = "{dailySalesDTO.itemName.notEmpty}")
-	private String itemName;
+	private Long productId;	
+	
+	@NotEmpty(message = "{dailySalesDTO.productName.notEmpty}")
+	private String productName;
+	
+	@Min(value = 0)
 	private Long quantity;
+	
 	@NotNull(message = "{dailySalesDTO.revenue.notNull}")
 	@DecimalMin(value = "0.0", inclusive = true, message = "金額不能是負數")
 	private BigDecimal revenue;
+	
 	@NotNull(message = "{dailySalesDTO.cost.notNull}")
 	@DecimalMin(value = "0.0", inclusive = true, message = "金額不能是負數")
 	private BigDecimal cost;
-	private BigDecimal profit;	//可以直接放計算後的欄位
+	
+	private BigDecimal profit;
+	
+	private SourceType sourceType;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 	private String remark;
 }

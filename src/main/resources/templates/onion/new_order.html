@@ -1,43 +1,50 @@
+<!-- src/main/resources/templates/onion/new_order.html -->
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="layout :: layout(~{::title}, ~{::main})">
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout :: layout (~{::title}, ~{::content})}">
 <head>
-    <title>點餐系統</title>
+    <title th:fragment="title">點餐頁面</title>
 </head>
 <body>
-<main>
-    <h1>點餐系統</h1>
-    <form th:action="@{/orders/new}" th:object="${orderDTO}" method="post">
-        <label>顧客姓名：
-            <input type="text" th:field="*{customerName}" required />
-        </label><br/>
-        <label>電話：
-            <input type="text" th:field="*{customerPhone}" />
-        </label><br/>
-
-        <table class="product-table">
-            <thead>
-                <tr>
-                    <th>商品名稱</th>
-                    <th>單價</th>
-                    <th>數量</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="product, iterStat : ${products}">
-                    <td th:text="${product.name}"></td>
-                    <td th:text="${product.price}"></td>
-                    <td>
-                        <input type="number" min="0" th:name="'items[' + ${iterStat.index} + '].quantity'" value="0"/>
-                        <input type="hidden" th:name="'items[' + ${iterStat.index} + '].productId'" th:value="${product.id}" />
-                        <input type="hidden" th:name="'items[' + ${iterStat.index} + '].productName'" th:value="${product.name}" />
-                        <input type="hidden" th:name="'items[' + ${iterStat.index} + '].unitPrice'" th:value="${product.price}" />
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <button type="submit" class="btn btn-primary">送出訂單</button>
-    </form>
-</main>
+    <main th:fragment="content">
+        <section class="main-content">
+            <h1>點餐</h1>
+            <form th:action="@{/orders/new}" method="post" th:object="${orderDTO}">
+                <div>
+                    <label>顧客姓名：</label>
+                    <input type="text" th:field="*{customerName}" required />
+                </div>
+                <div>
+                    <label>電話：</label>
+                    <input type="text" th:field="*{customerPhone}" required />
+                </div>
+                <table class="pure-table pure-table-bordered" style="margin-top: 1rem;">
+                    <thead>
+                        <tr>
+                            <th>商品名稱</th>
+                            <th>單價</th>
+                            <th>數量</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="product, iterStat : ${products}">
+                            <td th:text="${product.name}"></td>
+                            <td th:text="${product.price}"></td>
+                            <td>
+                                <input type="number" min="0" th:name="'items[' + ${iterStat.index} + '].quantity'" value="0"/>
+                                <input type="hidden" th:name="'items[' + ${iterStat.index} + '].productId'" th:value="${product.id}" />
+                                <input type="hidden" th:name="'items[' + ${iterStat.index} + '].productName'" th:value="${product.name}" />
+                                <input type="hidden" th:name="'items[' + ${iterStat.index} + '].unitPrice'" th:value="${product.price}" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="margin-top: 1rem;">
+                    <button type="submit" class="btn btn-primary">送出訂單</button>
+                    <a th:href="@{/orders}" class="btn">查看訂單列表</a>
+                </div>
+            </form>
+        </section>
+    </main>
 </body>
 </html>

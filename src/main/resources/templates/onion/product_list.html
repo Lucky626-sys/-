@@ -1,7 +1,7 @@
 <!-- src/main/resources/templates/product_list.html -->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	th:replace="layout :: layout (~{::title}, ~{::content})">
+      th:replace="~{layout :: layout (~{::title}, ~{::content})}">
 <head>
 <title th:fragment="title">商品清單</title>
 </head>
@@ -12,7 +12,7 @@
 
 			<!-- 按鈕區 -->
 			<div class="button-bar" style="margin-bottom: 1rem;">
-				<a th:href="@{/admin/home}" class="btn">返回首頁</a> 
+				<a th:href="@{/admin/home}" class="btn">返回管理者目錄頁</a> 
 				<a th:href="@{/product/add}"class="btn btn-primary">新增商品</a> 
 				<a th:href="@{/product}" class="btn btn-refresh" onclick="location.reload(); return false;">刷新</a>
 			</div>

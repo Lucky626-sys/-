@@ -1,4 +1,4 @@
-//查詢訂單明細資料
+//查詢訂單明細資料 -- 可用在單日所有商品銷售明細查詢、單日熱銷商品排行、單日商品類別銷售統計
 package com.example.demo.repository;
 
 import java.time.LocalDate;
