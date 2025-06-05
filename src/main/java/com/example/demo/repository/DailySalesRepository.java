@@ -32,6 +32,11 @@ public interface DailySalesRepository extends JpaRepository<DailySales, Long> {
     "GROUP BY DATE(o.order_time), p.product_id, p.product_name, o.source_type",
     nativeQuery = true)
     void summarizeTodaySales(@Param("start") LocalDate start, @Param("end")LocalDate end);
-    
-   
+    /*
+    @Modifying
+    @Transactional
+    @Query(value = 
+    "")
+    void summarizeMonthlySales(@Param("start") LocalDate start, @Param("end")LocalDate end);
+   */
 }

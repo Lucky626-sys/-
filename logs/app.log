@@ -19865,3 +19865,23 @@ Unconditional classes:
 2025-06-05T12:23:16.223+08:00 DEBUG 15748 --- [springboot-mvc] [main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
 2025-06-05T13:01:40.247+08:00  WARN 15748 --- [springboot-mvc] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5m50s815ms121µs800ns).
 2025-06-05T13:28:06.173+08:00  WARN 15748 --- [springboot-mvc] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=10m55s686ms462µs900ns).
+2025-06-05T13:55:52.481+08:00  WARN 15748 --- [springboot-mvc] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5m16s11ms919µs399ns).
+2025-06-05T14:03:15.102+08:00  INFO 15748 --- [springboot-mvc] [RMI TCP Connection(91)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2025-06-05T14:03:15.104+08:00 DEBUG 15748 --- [springboot-mvc] [RMI TCP Connection(91)-127.0.0.1] o.s.b.a.ApplicationAvailabilityBean      : Application availability state ReadinessState changed from ACCEPTING_TRAFFIC to REFUSING_TRAFFIC
+2025-06-05T14:03:15.107+08:00 DEBUG 15748 --- [springboot-mvc] [RMI TCP Connection(91)-127.0.0.1] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@7d42c224, started on Thu Jun 05 12:23:08 CST 2025
+2025-06-05T14:03:15.116+08:00 DEBUG 15748 --- [springboot-mvc] [RMI TCP Connection(91)-127.0.0.1] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147482623
+2025-06-05T14:03:15.121+08:00  INFO 15748 --- [springboot-mvc] [RMI TCP Connection(91)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-05T14:03:15.135+08:00  INFO 15748 --- [springboot-mvc] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-06-05T14:03:15.135+08:00 DEBUG 15748 --- [springboot-mvc] [RMI TCP Connection(91)-127.0.0.1] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147481599
+2025-06-05T14:03:15.136+08:00 DEBUG 15748 --- [springboot-mvc] [tomcat-shutdown] o.s.c.support.DefaultLifecycleProcessor  : Bean 'webServerGracefulShutdown' completed its stop procedure
+2025-06-05T14:03:15.140+08:00 DEBUG 15748 --- [springboot-mvc] [RMI TCP Connection(91)-127.0.0.1] o.s.c.support.DefaultLifecycleProcessor  : Bean 'webServerStartStop' completed its stop procedure
+2025-06-05T14:03:15.140+08:00 DEBUG 15748 --- [springboot-mvc] [RMI TCP Connection(91)-127.0.0.1] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 1073741823
+2025-06-05T14:03:15.140+08:00 DEBUG 15748 --- [springboot-mvc] [RMI TCP Connection(91)-127.0.0.1] o.s.c.support.DefaultLifecycleProcessor  : Bean 'applicationTaskExecutor' completed its stop procedure
+2025-06-05T14:03:15.140+08:00 DEBUG 15748 --- [springboot-mvc] [RMI TCP Connection(91)-127.0.0.1] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase -2147483647
+2025-06-05T14:03:15.140+08:00 DEBUG 15748 --- [springboot-mvc] [RMI TCP Connection(91)-127.0.0.1] o.s.c.support.DefaultLifecycleProcessor  : Bean 'springBootLoggingLifecycle' completed its stop procedure
+2025-06-05T14:03:15.141+08:00 DEBUG 15748 --- [springboot-mvc] [RMI TCP Connection(91)-127.0.0.1] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2025-06-05T14:03:15.142+08:00 DEBUG 15748 --- [springboot-mvc] [RMI TCP Connection(91)-127.0.0.1] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2025-06-05T14:03:15.143+08:00 DEBUG 15748 --- [springboot-mvc] [RMI TCP Connection(91)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2025-06-05T14:03:15.147+08:00  INFO 15748 --- [springboot-mvc] [RMI TCP Connection(91)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-05T14:03:15.154+08:00  INFO 15748 --- [springboot-mvc] [RMI TCP Connection(91)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-06-05T14:03:15.159+08:00  INFO 15748 --- [springboot-mvc] [RMI TCP Connection(91)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
