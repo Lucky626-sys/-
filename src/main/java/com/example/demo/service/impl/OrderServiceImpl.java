@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,11 +12,13 @@ import org.springframework.stereotype.Service;
 import com.example.demo.exception.NoResourceFoundException;
 import com.example.demo.mapper.OrderMapper;
 import com.example.demo.model.dto.OrderDTO;
+import com.example.demo.model.dto.ProductDTO;
 import com.example.demo.model.entity.Order;
 import com.example.demo.repository.OrderRepository;
 import com.example.demo.service.OrderService;
 import com.example.demo.service.PricingService;
 import com.example.demo.service.PrintService;
+import com.example.demo.service.ProductService;
 
 
 @Service
@@ -30,6 +32,9 @@ public class OrderServiceImpl implements OrderService{
 	
 	@Autowired
 	private PrintService printService;
+	
+	@Autowired
+	private ProductService productService;
 	
 	@Autowired 
 	private OrderMapper mapper;

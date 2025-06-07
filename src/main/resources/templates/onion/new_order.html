@@ -10,11 +10,14 @@
         <section class="main-content">
             <h1>點餐</h1>
             <form th:action="@{/orders/new}" method="post" th:object="${orderDTO}">
+            	<div style="margin-top: 1rem;">
+                    <button type="submit" class="btn btn-primary">送出訂單</button>
+                    <a th:href="@{/orders}" class="btn">查看訂單列表</a>
+                    <a th:href="@{/user/home}" class="btn btn-refresh">回員工使用者首頁</a>
+                </div>
                 <div>
                     <label>顧客姓名：</label>
                     <input type="text" th:field="*{customerName}" required />
-                </div>
-                <div>
                     <label>電話：</label>
                     <input type="text" th:field="*{customerPhone}" required />
                 </div>
@@ -22,8 +25,9 @@
                     <thead>
                         <tr>
                             <th>商品名稱</th>
-                            <th>單價</th>
-                            <th>數量</th>
+                            <th>商品單價</th>
+                            <th>商品圖片</th>
+                            <th>商品數量</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -31,7 +35,21 @@
                             <td th:text="${product.name}"></td>
                             <td th:text="${product.price}"></td>
                             <td>
-                                <input type="number" min="0" th:name="'items[' + ${iterStat.index} + '].quantity'" value="0"/>
+<!-- Thymeleaf 會產生 onclick="incrementQuantity(1)"（假設商品ID是1）。點圖片時會呼叫 JS 的 incrementQuantity 函數，並把該商品的 id 傳進去 -->
+								<img
+								th:src="@{/images/{filename}(filename=${product.imagePath})}"
+								th:onclick=" 'incrementQuantity(' + ${product.id} +')'"
+								onerror="this.onerror=null; this.src='/images/default.jpg';"
+								class="product-img" 
+								style= "cursor:pointer;"/>
+							</td>
+                            <td>
+<!-- 這是一個數字輸入框，最小值為0，產生像 id="qty-7" 這樣的唯一 id，讓 JS 可以精確找到這個欄位-->
+<!-- 產生像 name="items[].quantity"，Spring MVC 能自動把這個數量對應到後端的訂單明細 -->
+                                <input type="number" min="0" 
+                                	th:id="'qty-' + ${product.id}" 
+                                	th:name="'items[${product.id}].quantity'" 
+                                	value="0" style="width: 50px;"/>
                                 <input type="hidden" th:name="'items[' + ${iterStat.index} + '].productId'" th:value="${product.id}" />
                                 <input type="hidden" th:name="'items[' + ${iterStat.index} + '].productName'" th:value="${product.name}" />
                                 <input type="hidden" th:name="'items[' + ${iterStat.index} + '].unitPrice'" th:value="${product.price}" />
@@ -39,12 +57,11 @@
                         </tr>
                     </tbody>
                 </table>
-                <div style="margin-top: 1rem;">
-                    <button type="submit" class="btn btn-primary">送出訂單</button>
-                    <a th:href="@{/orders}" class="btn">查看訂單列表</a>
-                </div>
             </form>
         </section>
     </main>
+    <script>
+    
+    </script>
 </body>
 </html>

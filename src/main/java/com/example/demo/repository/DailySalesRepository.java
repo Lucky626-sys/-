@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -32,11 +33,12 @@ public interface DailySalesRepository extends JpaRepository<DailySales, Long> {
     "GROUP BY DATE(o.order_time), p.product_id, p.product_name, o.source_type",
     nativeQuery = true)
     void summarizeTodaySales(@Param("start") LocalDate start, @Param("end")LocalDate end);
-    /*
-    @Modifying
-    @Transactional
-    @Query(value = 
-    "")
-    void summarizeMonthlySales(@Param("start") LocalDate start, @Param("end")LocalDate end);
-   */
-}
+    
+    //JPQL 查詢必須用 Entity 名稱（DailySales），不能用資料表名（daily_sales）
+    @Query("select d from DailySales d where year(d.date) = :year and month(d.date) = :month")
+    List<DailySales> findByYearAndMonth(@Param("year") int year, @Param("month") int month);
+    
+    @Query("select SUM(d.revenue) from DailySales d where year(d.date) = :year and month(d.date) = :month")
+    BigDecimal findTotalRevenueByYearAndMonth(@Param("year") int year, @Param("month") int month);
+    
+} 

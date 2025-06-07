@@ -12,9 +12,10 @@
 
 			<!-- 按鈕區 -->
 			<div class="button-bar" style="margin-bottom: 1rem;">
-				<a th:href="@{/admin/home}" class="btn">返回管理者目錄頁</a> 
-				<a th:href="@{/product/add}"class="btn btn-primary">新增商品</a> 
-				<a th:href="@{/product}" class="btn btn-refresh" onclick="location.reload(); return false;">刷新</a>
+				<a th:href="@{/admin/home}" class="btn">返回管理者目錄頁</a> <a
+					th:href="@{/product/add}" class="btn btn-primary">新增商品</a> <a
+					th:href="@{/product}" class="btn btn-refresh"
+					onclick="location.reload(); return false;">刷新</a>
 			</div>
 
 			<table class="pure-table pure-table-bordered product-table"
@@ -49,4 +50,17 @@
 		</section>
 	</main>
 </body>
+
+				<script>
+					function quickAddOrder(productId){
+						fetch('/orders/quick-add/?productId=' + productId , {method: 'POST'})
+							.then(response => {
+								if(response.ok){
+									alert ('已建立訂單');
+								}else{
+									alert('建立失敗');
+								}
+							});
+					}
+				</script>
 </html>
