@@ -44,4 +44,11 @@ public class DailySalesDTO {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 	private String remark;
+	
+	// 為了monthlysales新增接收 2 個參數的構造函式
+	public DailySalesDTO(java.sql.Date date, BigDecimal revenue) {
+	    this.date = date.toLocalDate();
+	    this.revenue = revenue;
+	}
+
 }

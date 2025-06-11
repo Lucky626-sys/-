@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.example.demo.model.dto.DailySalesDTO;
 import com.example.demo.model.entity.DailySales;
 //Long 是這個實體的主鍵（id）的資料型態
 
@@ -33,12 +34,14 @@ public interface DailySalesRepository extends JpaRepository<DailySales, Long> {
     "GROUP BY DATE(o.order_time), p.product_id, p.product_name, o.source_type",
     nativeQuery = true)
     void summarizeTodaySales(@Param("start") LocalDate start, @Param("end")LocalDate end);
-    
-    //JPQL 查詢必須用 Entity 名稱（DailySales），不能用資料表名（daily_sales）
-    @Query("select d from DailySales d where year(d.date) = :year and month(d.date) = :month")
-    List<DailySales> findByYearAndMonth(@Param("year") int year, @Param("month") int month);
-    
+   
     @Query("select SUM(d.revenue) from DailySales d where year(d.date) = :year and month(d.date) = :month")
-    BigDecimal findTotalRevenueByYearAndMonth(@Param("year") int year, @Param("month") int month);
+    BigDecimal findMonthlyTotalRevenueByYearAndMonth(@Param("year") int year, @Param("month") int month);
     
+    @Query(value = "SELECT d.date, SUM(d.revenue) " +
+            "FROM daily_sales d " +
+            "WHERE YEAR(d.date) = :year AND MONTH(d.date) = :month " +
+            "GROUP BY d.date ORDER BY d.date", nativeQuery = true)
+    List<DailySalesDTO> findDailyTotalRevenueByYearAndMonth(@Param("year") int year, @Param("month") int month);
+
 } 

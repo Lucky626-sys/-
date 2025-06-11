@@ -1,7 +1,9 @@
+
 package com.example.demo.service.impl;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,18 +22,17 @@ public class MonthlySalesServiceImpl implements MonthlySalesService{
 	@Autowired
 	private DailySalesMapper mapper;
 	
-	@Override
-	public List<DailySalesDTO> findByYearAndMonth(int year, int month) {
-		return dailySalesRepository.findByYearAndMonth(year, month)
-				.stream()
-				.map(mapper::toDTO)
-				.toList();
-	}
-
+	//顯示「這個月總共賺多少錢」
 	@Override
 	public BigDecimal findTotalRevenueByYearAndMonth(int year, int month) {
-		return dailySalesRepository.findTotalRevenueByYearAndMonth(year, month);
+		return dailySalesRepository.findMonthlyTotalRevenueByYearAndMonth(year, month);
 				
+		
 	}
-
+	
+	//顯示「每天總共賺多少錢」
+	@Override
+	public List<DailySalesDTO> findTotalRevenueByDate(int year, int month) {
+		return dailySalesRepository.findDailyTotalRevenueByYearAndMonth(year, month);
+	}
 }

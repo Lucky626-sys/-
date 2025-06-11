@@ -2,6 +2,7 @@ package com.example.demo.service.impl;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,4 @@ public class PricingServiceImpl implements PricingService{
 			}
 		}
 		return total;
-	}
-
-}
+	}}

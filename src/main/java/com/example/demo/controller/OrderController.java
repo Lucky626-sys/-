@@ -7,12 +7,15 @@ import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.model.dto.OrderDTO;
 import com.example.demo.model.dto.ProductDTO;
+import com.example.demo.model.entity.Product;
 import com.example.demo.model.entity.SourceType;
 import com.example.demo.service.OrderService;
 import com.example.demo.service.ProductService;
@@ -31,6 +34,7 @@ public class OrderController {
 	@GetMapping("/new")
 	public String showOrderForm(Model model) {
 		List<ProductDTO> products = productService.findAll();
+		products.removeIf(Objects::isNull);
 		model.addAttribute("products", products);
 		model.addAttribute("orderDTO", new OrderDTO());// 綁定表單資料
 		return "onion/new_order";
@@ -87,4 +91,12 @@ public class OrderController {
 		model.addAttribute("order", saved);
 		return "onion/order_success";
 	}
+	
+	//刪除
+	@DeleteMapping("/{orderId}")
+	public String deleteOrders(@PathVariable Integer orderId) {
+		orderService.deleteOrderById(orderId);
+		return "redirect:/orders";
+	}
+	
 }

@@ -18,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
@@ -80,12 +81,12 @@ public class GlobalExceptionHandler {
      * 處理所有其他未捕捉的異常
      * 回傳 500 Internal Server Error
      */
-	@ExceptionHandler(Exception.class)
+	/*@ExceptionHandler(Exception.class)
 	public ResponseEntity<ApiResponse<Object>>handleAllExceptions(Exception e){
 		ApiResponse<Object> response = ApiResponse.error("系統錯誤，請稍後再試");
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
 		
-	}
+	}*/
 	
 	
 

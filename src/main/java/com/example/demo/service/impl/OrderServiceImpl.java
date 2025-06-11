@@ -42,7 +42,7 @@ public class OrderServiceImpl implements OrderService{
 	
 	@Override
 	public List<OrderDTO> getAllOrders() {
-		return orderRepository.findAll()
+		return orderRepository.findAllByOrderByOrderTimeDesc()
 				.stream()
 				.map(mapper::toDTO)
 				.toList();
@@ -80,5 +80,10 @@ public class OrderServiceImpl implements OrderService{
 		Order order = orderRepository.findById(orderId)
 				.orElseThrow(() -> new NoResourceFoundException("找不到此訂單: orderId" + orderId));
 		return mapper.toDTO(order);
+	}
+
+	@Override
+	public void deleteOrderById(Integer orderId) {
+		orderRepository.deleteById(orderId);
 	}
 }

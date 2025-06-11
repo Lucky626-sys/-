@@ -9,4 +9,5 @@ public interface OrderService {
 	public List<OrderDTO> getAllOrders();
 	public OrderDTO createOrder(OrderDTO orderDTO);
 	public OrderDTO  getOrderById(Integer orderId);
+	public void deleteOrderById(Integer orderId);
 }
