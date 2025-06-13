@@ -3,6 +3,8 @@ package com.example.demo.controller;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +52,12 @@ public class DailySalesController {
     //查詢指定日期營業額
     @PostMapping("/search")
     public String searchDailySales(@RequestParam("date") String dateString, Model model) {
+    	if(dateString == null || dateString.isEmpty()) {
+    		model.addAttribute("error", "請選擇日期");
+    		model.addAttribute("dailsales", Collections.emptyList());
+    		return "onion/daily_sales";
+    	}
+    	
     	//parse 是 Java 8 的 LocalDate 類別裡的一個靜態方法，用來把「字串」轉換成 LocalDate
     	LocalDate date = LocalDate.parse(dateString);
     	List<DailySalesDTO> dailysales = dailySalesService.findDailySalesByDate(date);

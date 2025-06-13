@@ -10,6 +10,8 @@ function incrementQuantity(productId){
         }
 		// 把目前的值（數量）讀出來，加 1，再寫回輸入框
         input.value = currentValue + 1;
+		input.dispatchEvent(new Event('change')); // 觸發 change 事件，讓總金額即時更新
+		updateTotalAmount(); // 直接呼叫總金額計算
     }
 	console.log("order.js loaded");
 }

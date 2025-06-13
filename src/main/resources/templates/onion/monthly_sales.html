@@ -5,6 +5,11 @@
 <title>月銷售報表</title>
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
 <link rel="stylesheet" th:href="@{/css/main.css}" />
+<!-- DataTables CSS -->
+	<link rel="stylesheet" th:href="@{https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css}"/>
+	<!-- Buttons 插件 CSS-->
+	<link rel="stylesheet" th:href="@{https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css}"/>
+
 <style>
 body {
 	font-family: 'Segoe UI', Arial, sans-serif;
@@ -108,7 +113,7 @@ tr:not(:last-child) {
 		</div>
 
 		<!-- 有資料時才顯示表格 -->
-		<table th:if="${!#lists.isEmpty(dailyTotalRevenue)}">
+		<table id="DataTable" th:if="${!#lists.isEmpty(dailyTotalRevenue)}">
 			<thead>
 				<tr>
 					<th>日期</th>
@@ -123,5 +128,45 @@ tr:not(:last-child) {
 			</tbody>
 		</table>
 	</div>
+	<!-- jQuery（必要）-->
+		<script th:src="@{https://code.jquery.com/jquery-3.7.1.min.js}"></script>
+		
+		<!-- DataTables JS -->
+		<script th:src="@{https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js}"></script>
+		
+		<!-- Buttons 插件 -->
+		<script th:src="@{https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js}"></script>
+		<script th:src="@{https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js}"></script>
+		<script th:src="@{https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js}"></script>
+		
+		<!-- PDF & Excel 匯出支援 -->
+		<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js}"></script>
+		<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js}"></script>
+		
+		<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js}"></script>
+<!-- DataTables 初始化 -->
+<script>
+    $(document).ready(function() {
+    	if($('#DataTable').length){
+    		$('#DataTable').DataTable({
+                dom: 'Bfrtpi',
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        text: '匯出 Excel',
+                        exportOptions: { columns: [0, 1] }
+                    },
+                    {
+                        extend: 'print',
+                        text: '列印',
+                        exportOptions: { columns: [0, 1] }
+                    }
+                ],
+                language: { url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/zh-HANT.json' }
+            });
+        }
+    	});
+      
+</script>
 </body>
 </html>

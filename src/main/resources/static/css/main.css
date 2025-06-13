@@ -5,9 +5,9 @@ body {
 }
 
 .header {
-	background-color:  #5d735d;
+	background-color:   #91c788;
 	padding: 20px;
-	border-bottom: 1px solid  #6c8e7f;
+	border-bottom: 1px solid  #91c788;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -39,7 +39,7 @@ body {
 }
 
 .nav-bar a {
-	color: #4a5e57;
+	color:  #6c8e7f;
 	text-decoration: none;
 	margin-right: 20px;
 	font-size: 16px;
