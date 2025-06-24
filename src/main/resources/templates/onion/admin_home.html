@@ -68,12 +68,14 @@
     <h1>管理者 <span th:if="${nickname != null}" th:text="${nickname}"></span>
 			 <span th:if="${nickname == null}">訪客</span>，您好！</h1>
     <div class="menu-box">
+    	<a th:href="@{/user/home}">🙋🏼‍♀️ 進入點餐者畫面</a>
+    	
         <a th:href="@{/product/list}">📦 商品管理</a>
         
         <div class="dropdown">
             <a href="#" onclick="return false;">🧾 報表管理 ▼</a>
             <div class="dropdown-content">
-                <a th:href="@{/costs}">報表彙總</a>
+                <a th:href="@{/report/search}">報表彙總</a>
                 <a th:href="@{/costs}">成本明細表</a>
             </div>
         </div>

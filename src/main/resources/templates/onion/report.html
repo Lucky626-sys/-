@@ -66,6 +66,12 @@
         tr:not(:last-child) {
             border-bottom: 1.5px dashed #c9d6e8;
         }
+        
+        .alert-danger {
+		    color: #dc3545 !important; /* Bootstrap 紅字色號 */
+		    background-color: #f8d7da;
+		    border-color: #f5c6cb;
+		}
     </style>
 </head>
 <body>
@@ -74,16 +80,17 @@
                     <h2 style="margin: 0;">報表分析表</h2>
                     <a th:href="@{/admin/home}" class="btn">返回管理者目錄頁</a>
                 </div>
-                <form class="search-form" method="get" th:action="@{analysis/search}">
-                	<input>
+                <form class="search-form" method="get" th:action="@{/report/search}">
+                	<input type = "date" name = "reportDate" placeholder="查詢報表日期">
                 	<button type = "submit"> 查詢 </button>
                 </form>
-                <a th:href="@{/costs/new}" class="btn btn-primary">新增成本</a>
+        	
+                
                 <table id="DataTable">
                     <thead>
                         <tr>
                             <th>日期</th>
-                            <th>商品</th>
+                            <th>商品名稱</th>
                             <th>單價成本</th>
                             <th>當日總營業額</th>
                             <th>當日總成本</th>
@@ -91,21 +98,27 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="cost : ${costs}">
-                            <td th:text="${cost.date}"></td>
-                            <td th:text="${cost.categoryDisplayName}"></td>
-                            <td th:text="${cost.itemName}"></td>
-                            <td th:text="${cost.amount}"></td>
-                            <td th:text="${cost.remark}"></td>
-                            <td>
-                                <a th:href="@{'/costs/edit/' + ${cost.id}}">編輯</a>
-                                &nbsp;
-                                <a th:href="@{'/costs/delete/' + ${cost.id}}"
-                                   onclick="return confirm('確定刪除?')">刪除</a>
-                            </td>
+                    	<tr th:if="${#lists.isEmpty(reports)}">
+							<td></td>
+					        <td></td>
+					        <td></td>
+					        <td>查無資料</td>
+					        <td></td>
+					        <td></td>
+						</tr>
+						
+                        <tr th:each="report : ${reports}">
+                            <td th:text="${report.date}"></td>
+                            <td th:text="${report.productName}"></td>
+                            <td th:text="${report.unitCost}"></td>
+                            <td th:text="${report.revenue}"></td>
+                            <td th:text="${report.totalCost}"></td>
+                            <td th:text="${report.grossProfit}"></td>
                         </tr>
                     </tbody>
                 </table>
+                <p>報表日期: <span th:text="${reportDate}"></span></p>
+                
             </div>
         <!-- jQuery（必要）-->
 		<script th:src="@{https://code.jquery.com/jquery-3.7.1.min.js}"></script>

@@ -120,20 +120,19 @@ tr:not(:last-child) {
 					<tr th:if="${errorMessage}" th:text="${errorMessage}" style="color:red"></tr>
 					
 					<tr th:each="order : ${orders}">
-					
-	                <td th:text="${order.id}"></td>
-	                <td th:text="${order.customerName}"></td>
-	                <td th:text="${order.customerPhone}"></td>
-	                <td th:text="${#temporals.format(order.orderTime, 'yyyy-MM-dd HH:mm')}"></td>
-	                <td th:text="${order.totalAmount}"></td>
-	                <td>
-	                    <ul>
-	                        <li th:each="item : ${order.items}">
-	                            <span th:text="${item.productName}"></span> x <span th:text="${item.quantity}"></span>
-	                        </li>
-	                    </ul>
-	                </td>
-	            </tr>
+		                <td th:text="${order.id}"></td>
+		                <td th:text="${order.customerName}"></td>
+		                <td th:text="${order.customerPhone}"></td>
+		                <td th:text="${#temporals.format(order.orderTime, 'yyyy-MM-dd HH:mm')}"></td>
+		                <td th:text="${order.totalAmount}"></td>
+		                <td>
+		                    <ul>
+		                        <li th:each="item : ${order.items}">
+		                            <span th:text="${item.productName}"></span> x <span th:text="${item.quantity}"></span>
+		                        </li>
+		                    </ul>
+	                	</td>
+	            	</tr>
 	        </tbody>
 	    </table>
 	</div>

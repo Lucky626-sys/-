@@ -1,33 +1,58 @@
-<!-- src/main/resources/templates/login.html -->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	th:replace="layout :: layout (~{::title}, ~{::content})">
+      th:replace="layout :: layout (~{::title}, ~{::content})">
 <head>
-<title th:fragment="title">登入頁面</title>
+    <title th:fragment="title">登入頁面 - 老郭鋪 POS 系統</title>
 </head>
 <body>
-	<main th:fragment="content">
-		<section class="main-content">
-			
-			<div class="button-bar" style="margin-bottom: 1rem; display: flex; align-items: center;">
-				<h2 style="margin: 0; flex: 1" >登入</h2>
-				<a th:href="@{/}" class="btn">返回首頁</a> 
-			</div>
-			<form method="post" th:action="@{/login}">
-				<input type="text" name="account" placeholder="帳號" /> <input
-					type="password" name="passwordHash" placeholder="密碼" /> <input
-					type="hidden" name="role" th:value="${role}" />
-				<button type="submit">登入</button>
-			</form>
+    <main th:fragment="content">
+        <!-- 登入頁面內容 -->
+        <div class="login-container">
+            <div class="button-bar">
+                <h2 class="login-title" style="margin: 0; flex: 1; text-align: left; font-size: 24px;">登入</h2>
+                <a th:href="@{/}" class="back-btn">返回首頁</a>
+            </div>
 
-			 
-			
-			<div th:if="${error}" th:text="${error}" style="color: red"></div>
+            <div class="login-header">
+                <div class="login-icon">🧅</div>
+                <div class="login-subtitle">歡迎回來！請登入您的帳戶</div>
+                
+                <!-- 根據角色顯示不同的徽章 -->
+                <div th:if="${role} == 'admin'" class="role-badge role-admin">
+                    👨‍💼 管理者登入
+                </div>
+                <div th:if="${role} == 'user'" class="role-badge role-user">
+                    🛒 點餐者登入
+                </div>
+            </div>
 
-			<!-- 根據角色顯示提示 -->
-			<div th:if="${role} == 'admin'">請使用管理者帳號登入</div>
-			<div th:if="${role} == 'user'">請使用點餐者帳號登入</div>
-		</section>
-	</main>
+            <form method="post" th:action="@{/login}" class="login-form">
+                <div class="form-group username has-icon">
+                    <input type="text" name="account" placeholder="請輸入帳號" class="form-input" required />
+                </div>
+                
+                <div class="form-group password has-icon">
+                    <input type="password" name="password" placeholder="請輸入密碼" class="form-input" required />
+                </div>
+                
+                <input type="hidden" name="role" th:value="${role}" />
+                
+                <button type="submit" class="submit-btn">
+                    立即登入
+                </button>
+            </form>
+
+            <!-- 錯誤訊息 -->
+            <div th:if="${error}" th:text="${error}" class="error-message"></div>
+
+            <!-- 角色提示訊息 -->
+            <div th:if="${role} == 'admin'" style="text-align: center; color: #6b7280; font-size: 14px; margin-top: 20px;">
+                🔐 請使用管理者帳號登入以存取系統管理功能
+            </div>
+            <div th:if="${role} == 'user'" style="text-align: center; color: #6b7280; font-size: 14px; margin-top: 20px;">
+                🍽️ 請使用點餐者帳號登入開始您的美食之旅
+            </div>
+        </div>
+    </main>
 </body>
 </html>

@@ -33,12 +33,12 @@ public class LoginController{
 	//檢查登入資訊
 	@PostMapping("/login")
 	public String checkLogin(@RequestParam String account, 
-							 @RequestParam String passwordHash,
+							 @RequestParam String password,
 							 @RequestParam String role,
 							 Model model, HttpSession session) {
 		
 		User user = userRepository.findByAccount(account);
-		if( user !=  null && BCrypt.checkpw(passwordHash, user.getPasswordHash())){
+		if( user !=  null && BCrypt.checkpw(password, user.getPassword())){
 			//確認角色是否和前端role相符
 			if(!role.equals(user.getRole())) {
 				model.addAttribute("error", "帳號與角色不符");

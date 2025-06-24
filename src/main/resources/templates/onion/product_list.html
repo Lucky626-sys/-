@@ -123,14 +123,14 @@ tr:not(:last-child) {
 						th:src="@{/images/{filename}(filename=${product.imagePath})}"
 						onerror="this.onerror=null; this.src='/images/default.jpg';"
 						class="product-img" /></td>
-					<td><a th:href="@{'/product/update/' + ${product.id}}"
-						class="action-link">編輯</a>
+					<td>
+						<a th:href="@{'/product/update/' + ${product.id}}" class="action-link">編輯</a>
 						<form th:action="@{'/product/delete/' + ${product.id}}"
 							method="post" style="display: inline;">
 							<input type="hidden" name="_method" value="delete" />
-							<button type="submit" class="action-link"
-								onclick="return confirm('確定要刪除嗎？')">刪除</button>
-						</form></td>
+							<button type="submit" class="action-link" onclick="return confirm('確定要刪除嗎？')">刪除</button>
+						</form>
+					</td>
 				</tr>
 			</tbody>
 		</table>
